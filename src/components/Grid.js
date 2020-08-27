@@ -41,6 +41,7 @@ const Grid = ({ currentColor, cells, setCells }) => {
           style={{ background: cell.on ? cell.color : '#ffffff' }}
           className={classes.cell}
           onMouseOver={updateCell(i)}
+          onMouseDown={updateCell(i)}
           onContextMenu={(e) => e.preventDefault()}
         />
       ))}
