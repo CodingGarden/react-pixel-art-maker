@@ -29,7 +29,7 @@ function App() {
           .map((cell) => cell.color.slice(1))
           .reduce((acc, color, i) => {
             if (parseInt(color, 10) !== 0) {
-              acc[`${parseInt(i / 5, 10)}${parseInt(i, 10) % 5}`] = color;
+              acc[`${parseInt(i / 8, 10)}${parseInt(i, 10) % 8}`] = color;
             }
             return acc;
           }, {})
