@@ -11,21 +11,27 @@ const offCell = {
 
 const Grid = ({ currentColor, cells, setCells }) => {
   const classes = useStyles();
-  const updateCell = (i, defaultState) => (e) => {
+  const updateCell = (i) => (e) => {
     e.preventDefault();
-    setCells(
-      cells.map((cell, cellIndex) => {
-        if (cellIndex === i) {
-          if (defaultState) return defaultState;
-          return {
-            on: true,
-            color: currentColor,
-          };
-        }
-        return cell;
-      })
-    );
+    // if left or right click is pressed
+    if (e.buttons === 1 || e.buttons === 2) {
+      setCells(
+        cells.map((cell, cellIndex) => {
+          if (cellIndex === i) {
+            if (e.buttons === 1) {
+              return {
+                on: true,
+                color: currentColor,
+              };
+            }
+            return offCell;
+          }
+          return cell;
+        })
+      );
+    }
   };
+
   return (
     <div className={classes.grid}>
       {cells.map((cell, i) => (
@@ -34,8 +40,8 @@ const Grid = ({ currentColor, cells, setCells }) => {
           key={i}
           style={{ background: cell.on ? cell.color : '#ffffff' }}
           className={classes.cell}
-          onClick={updateCell(i)}
-          onContextMenu={updateCell(i, offCell)}
+          onMouseOver={updateCell(i)}
+          onContextMenu={(e) => e.preventDefault()}
         />
       ))}
     </div>
