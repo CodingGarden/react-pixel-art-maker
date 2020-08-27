@@ -41,7 +41,9 @@ function App() {
       </div>
       <Grid cells={cells} setCells={setCells} currentColor={currentColor} />
       <p className={classes.chatString}>
+        {/* eslint-disable-next-line */}
         !rgb
+        {' '}
         {chatString}
       </p>
     </div>
