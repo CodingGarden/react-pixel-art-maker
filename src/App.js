@@ -23,7 +23,17 @@ function App() {
     [cells]
   );
   const chatString = useMemo(
-    () => cells.map((cell) => cell.color.slice(1)).join(','),
+    () =>
+      JSON.stringify(
+        cells
+          .map((cell) => cell.color.slice(1))
+          .reduce((acc, color, i) => {
+            if (parseInt(color, 10) !== 0) {
+              acc[`${parseInt(i / 8, 10)}${parseInt(i, 10) % 8}`] = color;
+            }
+            return acc;
+          }, {})
+      ),
     [cells]
   );
   return (
