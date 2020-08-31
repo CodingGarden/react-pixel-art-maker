@@ -5,8 +5,8 @@ export default createUseStyles({
     display: 'grid',
     gridTemplateRows: 'repeat(5, 1fr)',
     gridTemplateColumns: 'repeat(8, 1fr)',
-    width: '80vw',
-    height: '50vw',
+    width: '80vmin',
+    height: '50vmin',
     border: '2px solid black',
   },
   cell: {
