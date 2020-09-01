@@ -40,6 +40,12 @@ function App() {
         ))}
       </div>
       <Grid cells={cells} setCells={setCells} currentColor={currentColor} />
+      <button
+        className={classes.button}
+        onClick={() => setCells(cells.map(() => offCell))}
+      >
+        Clear Grid
+      </button>
       <p className={classes.chatString}>
         {/* eslint-disable-next-line */}
         !rgb
