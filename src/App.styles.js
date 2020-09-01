@@ -27,4 +27,9 @@ export default createUseStyles({
     fontFamily: 'monospace',
     wordWrap: 'break-word',
   },
+  button: {
+    margin: '1rem',
+    padding: '5px',
+    fontFamily: 'monospace',
+  },
 });
