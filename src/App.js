@@ -48,6 +48,9 @@ function App() {
         {/* eslint-disable-next-line */}
         !rgb {chatString}
       </button>
+      <p className={classes.chatString}>
+        (click the code to copy to clipboard)
+      </p>
     </div>
   );
 }
