@@ -40,7 +40,11 @@ function App() {
         ))}
       </div>
       <Grid cells={cells} setCells={setCells} currentColor={currentColor} />
-      <button type="button" className={classes.chatString}>
+      <button
+        type="button"
+        className={classes.chatString}
+        onClick={() => navigator.clipboard.writeText(chatString)}
+      >
         {/* eslint-disable-next-line */}
         !rgb {chatString}
       </button>
