@@ -43,7 +43,7 @@ function App() {
       <button
         type="button"
         className={classes.chatString}
-        onClick={() => navigator.clipboard.writeText(chatString)}
+        onClick={() => navigator.clipboard.writeText(`!rgb ${chatString}`)}
       >
         {/* eslint-disable-next-line */}
         !rgb {chatString}
