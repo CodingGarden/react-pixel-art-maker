@@ -40,11 +40,16 @@ function App() {
         ))}
       </div>
       <Grid cells={cells} setCells={setCells} currentColor={currentColor} />
-      <p className={classes.chatString}>
+      <button
+        type="button"
+        className={classes.chatString}
+        onClick={() => navigator.clipboard.writeText(`!rgb ${chatString}`)}
+      >
         {/* eslint-disable-next-line */}
-        !rgb
-        {' '}
-        {chatString}
+        !rgb {chatString}
+      </button>
+      <p className={classes.chatString}>
+        (click the code to copy to clipboard)
       </p>
     </div>
   );

@@ -26,5 +26,6 @@ export default createUseStyles({
     maxWidth: '50%',
     fontFamily: 'monospace',
     wordWrap: 'break-word',
+    backgroundColor: 'white',
   },
 });
