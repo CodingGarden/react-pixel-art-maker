@@ -15,6 +15,7 @@ const initialCells = Array.from({ length: 40 }, () => offCell);
 function App() {
   const [cells, setCells] = useState(initialCells);
   const [currentColor, setCurrentColor] = useState('#56BC58');
+  const [isColorPickerShowed, toggleColorPickerVisibility] = useState(false);
   const classes = useStyles();
   const colorSwatch = useMemo(
     () => [
@@ -28,7 +29,13 @@ function App() {
   );
   return (
     <div className={classes.app}>
-      <ColorPicker currentColor={currentColor} onSetColor={setCurrentColor} />
+      {isColorPickerShowed ?
+       <ColorPicker previousColor={colorSwatch[colorSwatch.length - 1]} 
+       showColorPickerButton={toggleColorPickerVisibility} currentColor={currentColor} 
+       onSetColor={setCurrentColor} /> :
+        <div style={{ backgroundColor: currentColor }} 
+        onClick={(e) => toggleColorPickerVisibility(true)} 
+        className={classes.showColorPickerButton}>Choose A Color</div>}
       <div className={classes.colorSwatchContainer}>
         {colorSwatch.map((color) => (
           <div
