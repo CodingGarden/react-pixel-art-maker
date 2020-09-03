@@ -5,6 +5,8 @@ import React, { useState, useMemo } from 'react';
 import Grid from './components/Grid';
 import ColorPicker from './components/ColorPicker';
 import useStyles from './App.styles';
+import {CopyToClipboard} from 'react-copy-to-clipboard';
+import {FaRegCopy} from "react-icons/fa";
 
 const offCell = {
   on: false,
@@ -22,9 +24,9 @@ function App() {
     ],
     [cells]
   );
-  const chatString = useMemo(
+  const chatString = '!rgb '.concat( useMemo( 
     () => cells.map((cell) => cell.color.slice(1)).join(','),
-    [cells]
+    [cells])
   );
   return (
     <div className={classes.app}>
@@ -40,12 +42,17 @@ function App() {
         ))}
       </div>
       <Grid cells={cells} setCells={setCells} currentColor={currentColor} />
-      <p className={classes.chatString}>
-        {/* eslint-disable-next-line */}
-        !rgb
-        {' '}
-        {chatString}
-      </p>
+      <CopyToClipboard 
+          className={classes.copyButton}  
+          text={chatString}>
+          <FaRegCopy /> 
+      </CopyToClipboard>
+
+        <p className={classes.chatString}>
+          {/* eslint-disable-next-line */}
+          {' '}
+          {chatString}
+        </p>
     </div>
   );
 }

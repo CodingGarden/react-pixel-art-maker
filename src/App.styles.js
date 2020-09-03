@@ -23,8 +23,25 @@ export default createUseStyles({
     cursor: 'pointer',
   },
   chatString: {
+    position: 'relative',
     maxWidth: '50%',
     fontFamily: 'monospace',
     wordWrap: 'break-word',
   },
+  parenti: {
+    position: 'relative',
+  },
+  
+  copyButton: {
+    position: 'relative',
+    left: '300px' ,
+    top: '5px' ,
+    font:{
+      size: 25
+    },
+    '&:hover':{
+      color: '#56BC58',
+    }
+    
+    },
 });
