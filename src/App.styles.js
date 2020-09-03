@@ -27,4 +27,11 @@ export default createUseStyles({
     fontFamily: 'monospace',
     wordWrap: 'break-word',
   },
+  showColorPickerButton: {
+    cursor: 'pointer',
+    border: '1px solid black',
+    borderRadius: '5px',
+    padding: '10px',
+    margin: '3rem',
+  }
 });

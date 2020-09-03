@@ -1,17 +1,27 @@
 import React from 'react';
+import { PhotoshopPicker } from 'react-color';
 
 import useStyles from './ColorPicker.styles';
 
-const ColorPicker = ({ currentColor, onSetColor }) => {
+const ColorPicker = ({ previousColor, currentColor, onSetColor, showColorPickerButton }) => {
+  
   const classes = useStyles();
-  const colorChange = (event) => {
-    onSetColor(event.target.value);
+  const colorChange = (color) => {
+    onSetColor(color.hex ? color.hex : color);
   };
+  const showButton = () => {
+    showColorPickerButton(false);
+  }
   return (
-    <input
+    <PhotoshopPicker
+      header={'Choose a color'}
       className={classes.colorPicker}
-      type="color"
-      value={currentColor}
+      color={currentColor}
+      onCancel={() => {
+        colorChange(previousColor ? previousColor : currentColor);
+        showButton();
+      }}
+      onAccept={showButton}
       onChange={colorChange}
     />
   );
