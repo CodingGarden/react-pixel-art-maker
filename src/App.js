@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useRef, useEffect } from 'react';
 
 import Grid from './components/Grid';
 import ColorPicker from './components/ColorPicker';
@@ -16,6 +16,21 @@ function App() {
   const [cells, setCells] = useState(initialCells);
   const [currentColor, setCurrentColor] = useState('#56BC58');
   const classes = useStyles();
+
+  const lastfive = useRef([]);
+
+  useEffect(() => {
+    if (lastfive.current.includes(currentColor)) {
+      lastfive.current = lastfive.current.filter((val) => val != currentColor);
+      lastfive.current.push(currentColor);
+      return;
+    }
+    console.log('in effect', lastfive.current);
+    //let lastLastFive = lastfive.current.slice()
+    lastfive.current.push(currentColor);
+    lastfive.current = lastfive.current.slice(-5);
+  }, [cells]);
+
   const colorSwatch = useMemo(
     () => [
       ...new Set(cells.filter((cell) => cell.on).map((cell) => cell.color)),
@@ -39,12 +54,22 @@ function App() {
           />
         ))}
       </div>
+      Last 5
+      <div className={classes.colorSwatchContainer}>
+        {lastfive.current.map((color) => (
+          <div
+            key={color}
+            onClick={() => setCurrentColor(color)}
+            onContextMenu={() => alert(color)}
+            className={classes.colorSwatch}
+            style={{ background: color }}
+          />
+        ))}
+      </div>
       <Grid cells={cells} setCells={setCells} currentColor={currentColor} />
       <p className={classes.chatString}>
         {/* eslint-disable-next-line */}
-        !rgb
-        {' '}
-        {chatString}
+        !rgb {chatString}
       </p>
     </div>
   );
