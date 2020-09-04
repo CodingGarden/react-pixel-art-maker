@@ -1,7 +1,7 @@
 import { createUseStyles } from 'react-jss';
 
 export default createUseStyles({
-  app: {
+  appdark: {
     display: 'flex',
     flexDirection: 'column',
     width: '100%',
@@ -9,6 +9,25 @@ export default createUseStyles({
     justifyContent: 'center',
     alignItems: 'center',
     fontFamily: 'sans-serif',
+    color: '#FFFFFF',
+    background:{
+      color: '#1a1919',
+    },
+    transition: '0.3s',
+  },
+  applight: {
+    display: 'flex',
+    flexDirection: 'column',
+    width: '100%',
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    fontFamily: 'sans-serif',
+    color: '#00000',
+    background:{
+      color: '#fff',
+    },
+    transition: '0.3s',
   },
   colorSwatchContainer: {
     display: 'flex',
@@ -37,11 +56,14 @@ export default createUseStyles({
     left: '300px' ,
     top: '5px' ,
     font:{
-      size: 25
+      size: 20
     },
     '&:hover':{
       color: '#56BC58',
-    }
-    
+      cursor: 'pointer',
+      transform: 'scale(1.3)',
+      transition: '0.2s',
+    }    
     },
+      
 });

@@ -1,12 +1,15 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
+import storage from 'local-storage-fallback';
 
+import {getInitialMode} from './DarkMode/InitialMode';
 import Grid from './components/Grid';
 import ColorPicker from './components/ColorPicker';
 import useStyles from './App.styles';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import {FaRegCopy} from "react-icons/fa";
+import Toggle from './DarkMode/Toggle';
 
 const offCell = {
   on: false,
@@ -17,6 +20,12 @@ const initialCells = Array.from({ length: 40 }, () => offCell);
 function App() {
   const [cells, setCells] = useState(initialCells);
   const [currentColor, setCurrentColor] = useState('#56BC58');
+  const [darkMode,setDarkMode] =useState(getInitialMode());
+  
+  useEffect(() =>{
+    storage.setItem('dark', JSON.stringify(darkMode));
+  },[darkMode]); 
+ 
   const classes = useStyles();
   const colorSwatch = useMemo(
     () => [
@@ -28,9 +37,22 @@ function App() {
     () => cells.map((cell) => cell.color.slice(1)).join(','),
     [cells])
   );
+
+  
+  
   return (
-    <div className={classes.app}>
-      <ColorPicker currentColor={currentColor} onSetColor={setCurrentColor} />
+  <div className={darkMode ? classes.appdark : classes.applight}>
+    <div className={classes.toggle}>
+      <Toggle 
+        darkMode={darkMode} 
+        setDarkMode={setDarkMode}
+      />
+   
+     </div>
+      <ColorPicker 
+        currentColor={currentColor} 
+        onSetColor={setCurrentColor} 
+      />
       <div className={classes.colorSwatchContainer}>
         {colorSwatch.map((color) => (
           <div
@@ -48,12 +70,13 @@ function App() {
           <FaRegCopy /> 
       </CopyToClipboard>
 
-        <p className={classes.chatString}>
-          {/* eslint-disable-next-line */}
-          {' '}
-          {chatString}
-        </p>
-    </div>
+      <p className={classes.chatString}>
+         {/* eslint-disable-next-line */}
+         {' '}
+         {chatString}
+       </p>
+       
+  </div>
   );
 }
 
