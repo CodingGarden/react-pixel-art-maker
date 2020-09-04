@@ -9,7 +9,7 @@ import ColorPicker from './components/ColorPicker';
 import useStyles from './App.styles';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import {FaRegCopy} from "react-icons/fa";
-import Toggle from './DarkMode/Toggle';
+import ModeToggle from './DarkMode/ModeToggle';
 
 const offCell = {
   on: false,
@@ -25,8 +25,9 @@ function App() {
   useEffect(() =>{
     storage.setItem('dark', JSON.stringify(darkMode));
   },[darkMode]); 
- 
+  
   const classes = useStyles();
+
   const colorSwatch = useMemo(
     () => [
       ...new Set(cells.filter((cell) => cell.on).map((cell) => cell.color)),
@@ -41,9 +42,9 @@ function App() {
   
   
   return (
-  <div className={darkMode ? classes.appdark : classes.applight}>
+  <div className={darkMode ? classes.appdark : classes.app}>
     <div className={classes.toggle}>
-      <Toggle 
+      <ModeToggle 
         darkMode={darkMode} 
         setDarkMode={setDarkMode}
       />
