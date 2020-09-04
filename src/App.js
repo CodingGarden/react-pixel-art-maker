@@ -17,7 +17,7 @@ function App() {
   const [currentColor, setCurrentColor] = useState('#56BC58');
   const classes = useStyles();
 
-  const lastfive = useRef(['#56BC58']);
+  const lastfive = useRef([]);
 
   useEffect(() => {
     if (lastfive.current.includes(currentColor)) {
