@@ -3,8 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "local-storage-fallback": "^4.1.1",
     "react": "^16.13.1",
+    "react-copy-to-clipboard": "^5.0.2",
+    "react-dark-mode-toggle": "0.0.9",
     "react-dom": "^16.13.1",
+    "react-icons": "^3.11.0",
     "react-jss": "^10.4.0",
     "react-scripts": "3.4.3"
   },
