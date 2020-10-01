@@ -23,8 +23,25 @@ export default createUseStyles({
     cursor: 'pointer',
   },
   chatString: {
-    maxWidth: '50%',
+    marginTop: '1rem',
+    width: '290px',
+    height: '160px',
+    padding: '0.5rem 0.8rem',
+    outline: 'none',
     fontFamily: 'monospace',
     wordWrap: 'break-word',
+    resize: 'none',
+    overflow: 'hidden',
+  },
+  copyButton: {
+    fontFamily: 'monospace',
+    marginTop: '1rem',
+    backgroundColor: '#56BC58',
+    color: 'white',
+    border: 'none',
+    padding: '5px 10px',
+    '&:hover': {
+      cursor: 'pointer',
+    },
   },
 });
