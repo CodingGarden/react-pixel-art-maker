@@ -20,11 +20,11 @@ function App() {
     () => [
       ...new Set(cells.filter((cell) => cell.on).map((cell) => cell.color)),
     ],
-    [cells]
+    [cells],
   );
   const chatString = useMemo(
     () => cells.map((cell) => cell.color.slice(1)).join(','),
-    [cells]
+    [cells],
   );
   return (
     <div className={classes.app}>
